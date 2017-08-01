@@ -69,6 +69,11 @@ function islandora_newspaper_batch_drush_command() {
       'directory_dedup' => array(
         'description' => 'A flag to indicate that we should avoid repreprocessing newspaper issues which are located in directories.',
       ),
+      'assign_pid' => array(
+        'description' => 'The PID value (including namespace) to assign to the object. If this value ' .
+        'is provided, the namespace value is ignored.',
+        'value' => 'optional',
+      ),
     ),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
   );
@@ -113,6 +118,7 @@ function drush_islandora_newspaper_batch_preprocess() {
     'email_admin' => drush_get_option('email_admin', FALSE),
     'wait_for_metadata' => drush_get_option('wait_for_metadata', FALSE),
     'directory_dedup' => drush_get_option('directory_dedup', FALSE),
+    'assign_pid' => drush_get_option('assign_pid'),
   );
 
   if ($content_models = drush_get_option('content_models', FALSE)) {

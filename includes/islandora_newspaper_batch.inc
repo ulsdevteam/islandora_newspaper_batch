@@ -411,7 +411,6 @@ class IslandoraNewspaperIssueBatchObject extends IslandoraNewspaperFlatBatchObje
         $children[] = new IslandoraNewspaperPageBatchObject($connection, $this->id, $sequence, $info, $this->preprocessorParameters);
       }
     }
-
     return $children;
   }
 
@@ -439,11 +438,13 @@ class IslandoraNewspaperIssueBatchObject extends IslandoraNewspaperFlatBatchObje
 class IslandoraNewspaperPageBatchObject extends IslandoraNewspaperFlatBatchObject {
   protected $parentId;
   protected $sequenceNumber;
+  public $pagePID;
 
   /**
    * Function construct.
    */
   public function __construct(IslandoraTuque $connection, $parent_id, $sequence, $object_info, $pp) {
+    $this->pagePID = "$parent_id-$sequence";
 
     $label = "$parent_id-$sequence";
     // Change the label of the page to the sequence number if variable is set.

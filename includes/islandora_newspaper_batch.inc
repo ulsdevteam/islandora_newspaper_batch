@@ -495,8 +495,10 @@ class IslandoraNewspaperPageBatchObject extends IslandoraNewspaperFlatBatchObjec
     // dependent on the existence of the islandora_ocr module, so one
     // isset() will suffice.
     if (isset($this->preprocessorParameters['generate_ocr'])) {
-      module_load_include('inc', 'islandora_ocr', 'includes/derivatives');
+      $this->relationships->add('http://islandora.ca/ontology/relsext#', 'generate_ocr', $this->preprocessorParameters['generate_ocr'], 1);
+/*      module_load_include('inc', 'islandora_ocr', 'includes/derivatives');
       islandora_ocr_set_generating_rels_ext_statements($this, (bool) $this->preprocessorParameters['generate_ocr'], (bool) $this->preprocessorParameters['generate_hocr']);
+*/
     }
   }
 }
